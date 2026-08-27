@@ -1,0 +1,20 @@
+# cppcheck suppressions for the Desk-Mixer firmware.
+# One id per line. Used by CI and the pre-push hook via --suppressions-list.
+
+# Arduino, Teensy core and audio library headers are not on cppcheck's include
+# path — that is expected, we only analyse our own sources.
+missingIncludeSystem
+missingInclude
+
+# unusedFunction is cross-translation-unit and false-positives on subsystem entry
+# points that are only called from other .cpp files (or from the Arduino runtime).
+unusedFunction
+
+# Silence cppcheck's own "consider --check-level=exhaustive" nag and unmatched
+# suppression noise so the report stays clean.
+checkersReport
+unmatchedSuppression
+
+# The audio graph is built from file-scope AudioConnection objects whose whole
+# purpose is their constructor side effect. cppcheck reads them as unused.
+unusedVariable

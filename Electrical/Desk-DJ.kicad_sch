@@ -1,0 +1,303 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "b6d23e1e-9195-4db2-8471-9a36d0040116")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 217.17 60.96)
+		(size 43.18 63.5)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "2601ff8f-4a08-47c5-aea6-82c5caf06896")
+		(property "Sheetname" "Audio IO"
+			(at 217.17 60.2484 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.254)
+					(bold yes)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Audio_IO.kicad_sch"
+			(at 217.17 125.0446 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Desk-DJ"
+				(path "/b6d23e1e-9195-4db2-8471-9a36d0040116"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 111.76 26.67)
+		(size 69.85 22.86)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "367aa023-372d-48ab-8b3e-5566be55b253")
+		(property "Sheetname" "LCD Screens"
+			(at 111.76 25.9584 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.254)
+					(bold yes)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "LCD.kicad_sch"
+			(at 111.76 50.1146 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Desk-DJ"
+				(path "/b6d23e1e-9195-4db2-8471-9a36d0040116"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 93.98 133.35)
+		(size 109.22 21.59)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "38530467-a687-4dac-9144-8608bc4bf34a")
+		(property "Sheetname" "Physical Interface"
+			(at 93.98 132.6384 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.254)
+					(bold yes)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Interface.kicad_sch"
+			(at 93.98 155.5246 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.1588)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Desk-DJ"
+				(path "/b6d23e1e-9195-4db2-8471-9a36d0040116"
+					(page "7")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 93.98 60.96)
+		(size 109.22 63.5)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "64250039-feae-4fe8-8813-ca96517f1c76")
+		(property "Sheetname" "Microcontrollers"
+			(at 93.98 60.2484 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.254)
+					(bold yes)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Microcontrollers.kicad_sch"
+			(at 93.98 125.0446 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Desk-DJ"
+				(path "/b6d23e1e-9195-4db2-8471-9a36d0040116"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 24.13 73.66)
+		(size 19.05 35.56)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "89d62b87-8d95-4c6e-8e19-54ac6a0b48c4")
+		(property "Sheetname" "USB Input"
+			(at 24.13 72.9484 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.254)
+					(bold yes)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "USB_Input.kicad_sch"
+			(at 24.13 109.8046 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Desk-DJ"
+				(path "/b6d23e1e-9195-4db2-8471-9a36d0040116"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 53.34 60.96)
+		(size 27.94 63.5)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "fe37ce65-faeb-4610-8a9e-5db618903e9e")
+		(property "Sheetname" "Power"
+			(at 53.34 60.2484 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.254)
+					(bold yes)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Power.kicad_sch"
+			(at 53.34 125.0446 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Desk-DJ"
+				(path "/b6d23e1e-9195-4db2-8471-9a36d0040116"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

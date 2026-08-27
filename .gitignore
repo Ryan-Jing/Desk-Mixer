@@ -1,55 +1,109 @@
-# Prerequisites
-*.d
+# ==============================================================================
+# Desk-Mixer — repository ignore rules
+#
+# Three sub-projects live here, each with its own build artefacts:
+#   Firmware/  PlatformIO (C++)
+#   App/       Python
+#   Electrical/       KiCad
+# ==============================================================================
 
-# Object files
+# ---- OS noise ----------------------------------------------------------------
+.DS_Store
+._*
+Thumbs.db
+
+# ---- C / C++ build artefacts -------------------------------------------------
+*.d
 *.o
 *.ko
 *.obj
 *.elf
-
-# Linker output
 *.ilk
 *.map
 *.exp
-
-# Precompiled Headers
 *.gch
 *.pch
-
-# Libraries
 *.lib
 *.a
 *.la
 *.lo
-
-# Shared objects (inc. Windows DLLs)
 *.dll
 *.so
 *.so.*
 *.dylib
-
-# Executables
 *.exe
 *.out
-*.app
 *.i*86
 *.x86_64
 *.hex
-
-# Debug files
 *.dSYM/
 *.su
 *.idb
 *.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
-
-# debug information files
 *.dwo
+
+# ---- PlatformIO --------------------------------------------------------------
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# ---- Generated documentation -------------------------------------------------
+# Doxygen writes here (Firmware/Doxyfile: OUTPUT_DIRECTORY = ../Docs/doxygen).
+# The rest of Docs/ is hand-written and version-controlled.
+Docs/doxygen/
+Docs/decisions
+
+# ---- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---- Secrets -----------------------------------------------------------------
+# Spotify client credentials and any cached OAuth tokens never enter the repo.
+.env
+*.secrets.json
+App/**/secrets.toml
+Firmware/include/secrets.h
+
+# ---- KiCad -------------------------------------------------------------------
+# Keep: *.kicad_pro, *.kicad_sch, *.kicad_pcb, *.kicad_dru, project libraries.
+# Drop: per-user local state, caches, lock files and auto-backups.
+*.kicad_prl
+*-backups/
+fp-info-cache
+~*.lck
+*.lck
+_autosave-*
+_restore_backup_*/
+*-bak
+*.bak
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*.net
+
+# KiCad 10 "Local History" keeps its own nested git repository. It must not be
+# committed to (or as) the parent repo — it was previously picked up as a
+# gitlink with no .gitmodules entry, which breaks `git submodule status`.
+.history/
+
+# KiCad fabrication output
+gerbers/
+*.gbr
+*.drl
+
+# ---- Development ------------------------------------------------------------
+.claude/
+.github/
+.githooks/
+
+

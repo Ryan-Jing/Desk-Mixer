@@ -1,0 +1,167 @@
+# ==============================================================================
+# Desk-Mixer device wire protocol — SINGLE SOURCE OF TRUTH
+#
+# The laptop app and the firmware both speak this. Edit this file, then run
+#   python3 Tools/generate_protocol.py
+# to regenerate BOTH sides:
+#   Firmware/include/link/protocol_gen.h
+#   App/src/desk_mixer_app/device/protocol_gen.py
+#
+# Never edit either generated file by hand. CI fails on drift.
+#
+# TOML rather than YAML so the generator needs no third-party packages —
+# tomllib is in the standard library from Python 3.11.
+#
+# Transport: USB CDC serial (Teensy USB type USB_MIDI_SERIAL).
+#
+# Frame layout:
+#   [0]      sync (0xA5)
+#   [1]      opcode
+#   [2..3]   payload length, little-endian uint16
+#   [4..]    payload
+#   [n..n+1] crc16-ccitt over opcode+length+payload, little-endian
+# ==============================================================================
+
+version = 1
+
+[framing]
+sync = 0xA5
+max_payload = 512
+crc = "crc16_ccitt"
+
+# ---- Host -> device ----------------------------------------------------------
+[[commands]]
+name = "PING"
+code = 0x01
+doc = "Liveness check. Device replies EVT_PONG."
+
+[[commands]]
+name = "GET_INFO"
+code = 0x02
+doc = "Request firmware version, protocol version and SD capacity."
+
+[[commands]]
+name = "GET_STATUS"
+code = 0x03
+doc = "Request current transport state of both decks."
+
+[[commands]]
+name = "LIST_BEGIN"
+code = 0x10
+doc = "Begin enumerating the SD library. Payload is a UTF-8 path prefix."
+
+[[commands]]
+name = "LIST_NEXT"
+code = 0x11
+doc = "Request the next library entry."
+
+[[commands]]
+name = "FILE_BEGIN"
+code = 0x20
+doc = "Open a file for writing. Payload is uint32 total size then a UTF-8 path."
+
+[[commands]]
+name = "FILE_CHUNK"
+code = 0x21
+doc = "Append a chunk to the open file. Payload is raw bytes."
+
+[[commands]]
+name = "FILE_END"
+code = 0x22
+doc = "Close and commit the open file. Payload is the CRC32 of the whole file."
+
+[[commands]]
+name = "FILE_DELETE"
+code = 0x23
+doc = "Delete a file. Payload is a UTF-8 path."
+
+[[commands]]
+name = "SET_OUTPUT"
+code = 0x30
+doc = "Select the active audio output. Payload is one byte from the Output enum."
+
+[[commands]]
+name = "DECK_LOAD"
+code = 0x40
+doc = "Load a track onto a deck. Payload is a Deck byte then a UTF-8 path."
+
+[[commands]]
+name = "DECK_TRANSPORT"
+code = 0x41
+doc = "Play/pause/cue a deck. Payload is a Deck byte then a Transport byte."
+
+# ---- Device -> host ----------------------------------------------------------
+[[events]]
+name = "ACK"
+code = 0x80
+doc = "Last command succeeded. Payload echoes the acknowledged opcode."
+
+[[events]]
+name = "NACK"
+code = 0x81
+doc = "Last command failed. Payload is the acknowledged opcode then a Status byte."
+
+[[events]]
+name = "PONG"
+code = 0x82
+doc = "Reply to PING."
+
+[[events]]
+name = "INFO"
+code = 0x83
+doc = "Firmware version, protocol version and SD capacity."
+
+[[events]]
+name = "STATUS"
+code = 0x84
+doc = "Transport state of both decks."
+
+[[events]]
+name = "LIST_ENTRY"
+code = 0x90
+doc = "One library entry. Payload is a flags byte, uint32 size, then a UTF-8 name."
+
+[[events]]
+name = "LIST_END"
+code = 0x91
+doc = "Library enumeration complete."
+
+[[events]]
+name = "LOG"
+code = 0xF0
+doc = "Human-readable diagnostic line from the device. Payload is UTF-8 text."
+
+# ---- Shared enumerations -----------------------------------------------------
+[enums.Status]
+doc = "Result code carried by NACK."
+[enums.Status.values]
+OK = 0x00
+BAD_CRC = 0x01
+BAD_OPCODE = 0x02
+BAD_LENGTH = 0x03
+BAD_STATE = 0x04
+SD_ERROR = 0x05
+NO_SPACE = 0x06
+NOT_FOUND = 0x07
+UNSUPPORTED = 0x08
+
+[enums.Output]
+doc = "Audio output selection. USB_HOST is accepted but unavailable, see ADR 0005."
+[enums.Output.values]
+ANALOG = 0x00
+BLUETOOTH = 0x01
+USB_HOST = 0x02
+
+[enums.Deck]
+doc = "Deck identifier."
+[enums.Deck.values]
+A = 0x00
+B = 0x01
+
+[enums.Transport]
+doc = "Deck transport command."
+[enums.Transport.values]
+STOP = 0x00
+PLAY = 0x01
+PAUSE = 0x02
+CUE = 0x03
